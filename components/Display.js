@@ -1,24 +1,38 @@
-import React, {Component} from 'react';
-import { 
-  StyleSheet, 
-  Text, 
+import React, { Component } from 'react';
+import {
+  StyleSheet,
+  Text,
   View,
   TouchableOpacity
 } from 'react-native';
+import { connect } from "react-redux";
 
-type Props = {};
-export default class Display extends Component<Props> {
+class Display extends Component {
   render() {
     return (
-      <View style={styles.green}>
-          <Text></Text>
+      <View style={styles.display}>
+        <Text style={styles.displayFont}>{this.props.store.pin}</Text>
       </View>
     );
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    store: state
+  };
+};
+
+export default connect(mapStateToProps)(Display);
+
 const styles = StyleSheet.create({
-    display: {
-        backgroundColor: "green"
-    }
+  display: {
+    flex: 2.5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  displayFont: {
+    fontSize: 28,
+    letterSpacing: 25
+  },
 });
